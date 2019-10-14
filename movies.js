@@ -1,12 +1,13 @@
+const request = require('request')
+
 if (process.env.NODE_ENV === 'production') {
 	var apikey = process.env.API_KEY
+	console.log("Api key = " + apikey)
 } else {
 	const credentials = require('./credentials.js')
 	var apikey = credentials.apikey
 }
 
-const request = require('request')
-console.log(apikey)
 
 const omdbMovie = function(title, callback) {
 	const url = 'http://www.omdbapi.com/?apikey=' + apikey + '&t=' + title
@@ -17,7 +18,7 @@ const omdbMovie = function(title, callback) {
 		} else {
 			const data = response.body
 			if (data.Response == 'False') {
-				callback(data.Error + " " + data, undefined)
+				callback(data.Error, undefined)
 			} else {
 				const info = {
 					title: data.Title,
