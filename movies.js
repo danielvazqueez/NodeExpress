@@ -2,7 +2,6 @@ const request = require('request')
 
 if (process.env.NODE_ENV === 'production') {
 	var apikey = process.env.APIKEY
-	console.log("Api key = " + apikey)
 } else {
 	const credentials = require('./credentials.js')
 	var apikey = credentials.apikey
@@ -11,7 +10,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const omdbMovie = function(title, callback) {
 	const url = 'http://www.omdbapi.com/?apikey=' + apikey + '&t=' + title
-	console.log(url)
 	request({url, json : true}, function(error, response) {
 		if (error) {
 			callback(error, undefined)
