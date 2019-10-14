@@ -10,14 +10,14 @@ console.log(apikey)
 
 const omdbMovie = function(title, callback) {
 	const url = 'http://www.omdbapi.com/?apikey=' + apikey + '&t=' + title
-
+	console.log(url)
 	request({url, json : true}, function(error, response) {
 		if (error) {
 			callback(error, undefined)
 		} else {
 			const data = response.body
 			if (data.Response == 'False') {
-				callback(data.Error, undefined)
+				callback(data.Error + " " + data, undefined)
 			} else {
 				const info = {
 					title: data.Title,
