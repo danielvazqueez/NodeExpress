@@ -20,7 +20,6 @@ const omdbMovie = function(title, callback) {
 					rating: data.imdbRating,
 					seasons: data.totalSeasons
 				}
-
 				callback(undefined, info)
 			}
 		}

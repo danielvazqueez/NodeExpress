@@ -2,6 +2,8 @@ const express = require('express')
 const omdb = require('./movies')
 const app = express()
 
+const port = process.env.PORT || 3000
+
 app.get('/', function(req, res) {
   res.send({
     greeting: 'Hola Mundo!'
@@ -28,22 +30,16 @@ app.get('/omdb', function(req, res) {
           return res.send({
             error: error
           })
-        } else {
-          res.send({
-            title: title,
-            season: response.season,
-            episodes: response.episodes
-          })
         }
+        res.send({
+          title: title,
+          season: response.season,
+          episodes: response.episodes
+        })
       })
     } else {
-      res.send({
-        response
-      })
+      res.send(response)
     }
-  })
-  res.send({
-    title: req.query.search
   })
 })
 
