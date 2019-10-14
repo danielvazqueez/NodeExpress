@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const request = require('request')
-
+console.log(apikey)
 
 const omdbMovie = function(title, callback) {
 	const url = 'http://www.omdbapi.com/?apikey=' + apikey + '&t=' + title
@@ -43,7 +43,6 @@ const omdbSeason = (title, season, callback) => {
 			if (data.Response == 'False') {
 				callback(data.Error, undefined)
 			} else {
-				console.log(data)
 				const info = {
 					season : season,
 					episodes : []
